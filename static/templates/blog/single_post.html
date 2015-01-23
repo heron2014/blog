@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        {{ post.title }}
+
+        {% for category in categories %}
+
+        {{ category }}
+
+        {% endfor %}
+
+        <h1>Comments</h1>
+        <!-- Comments  -->
+{% if comments %}
+{% for item in comments %}
+
+       <p class="lead">{{ item.created }} | {{ item.username }} | {{ item.email }}</p>
+        <p>{{ item.body }}</p>
+
+{% endfor %}
+{% endif %}
+<h1>Add a comment</h1>
+<!-- Comment form  -->
+<form action="" method="POST">{% csrf_token %}
+
+        {{ comment_form.as_p }}
+
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
